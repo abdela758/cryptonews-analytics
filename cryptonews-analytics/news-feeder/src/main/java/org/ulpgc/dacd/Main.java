@@ -1,17 +1,18 @@
-package org.ulpgc.dacd;
+package org.ulpgc.dacd.news;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import org.ulpgc.dacd.news.controller.NewsController;
+import org.ulpgc.dacd.news.feeder.NewsApiFeeder;
+import org.ulpgc.dacd.news.serializer.NewsSerializer;
+import org.ulpgc.dacd.news.store.SqliteNewsStore;
+
 public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+    public static void main(String[] args) {
+        NewsController controller = new NewsController(
+                new NewsApiFeeder(),
+                new NewsSerializer(),
+                new SqliteNewsStore("news.db")
+        );
+        controller.execute();
     }
 }
