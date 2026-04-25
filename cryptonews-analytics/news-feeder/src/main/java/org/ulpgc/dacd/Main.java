@@ -13,6 +13,6 @@ public class Main {
                 new NewsSerializer(),
                 new SqliteNewsStore("news.db")
         );
-        controller.execute();
+        controller.start();
     }
 }
