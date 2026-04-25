@@ -13,6 +13,6 @@ public class Main {
                 new CryptoSerializer(),
                 new SqliteCryptoStore("crypto.db")
         );
-        controller.execute();
+        controller.start();
     }
 }
