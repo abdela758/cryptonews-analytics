@@ -14,6 +14,7 @@
         <module>crypto-feeder</module>
         <module>news-feeder</module>
         <module>event-store-builder</module>
+        <module>business-unit</module>
     </modules>
 
     <properties>
