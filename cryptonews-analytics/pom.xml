@@ -14,6 +14,7 @@
     <modules>
         <module>crypto-feeder</module>
         <module>news-feeder</module>
+        <module>event-store-builder</module>
     </modules>
 
     <properties>
@@ -42,6 +43,12 @@
                 <groupId>org.xerial</groupId>
                 <artifactId>sqlite-jdbc</artifactId>
                 <version>3.45.3.0</version>
+            </dependency>
+            <!-- ActiveMQ Client -->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>5.15.12</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
