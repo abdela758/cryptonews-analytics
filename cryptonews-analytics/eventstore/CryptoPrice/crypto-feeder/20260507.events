@@ -1,0 +1,20 @@
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"bitcoin","symbol":"btc","name":"Bitcoin","priceUsd":81255.0,"marketCapUsd":1.627722706723E12,"volume24h":4.1423334843E10}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"ethereum","symbol":"eth","name":"Ethereum","priceUsd":2345.66,"marketCapUsd":2.83200340275E11,"volume24h":2.0375046968E10}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"tether","symbol":"usdt","name":"Tether","priceUsd":0.999868,"marketCapUsd":1.89628462483E11,"volume24h":7.7792204458E10}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"ripple","symbol":"xrp","name":"XRP","priceUsd":1.42,"marketCapUsd":8.7869386253E10,"volume24h":2.660181835E9}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"binancecoin","symbol":"bnb","name":"BNB","priceUsd":647.31,"marketCapUsd":8.7373627901E10,"volume24h":1.886227819E9}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"usd-coin","symbol":"usdc","name":"USDC","priceUsd":0.999737,"marketCapUsd":7.8241593233E10,"volume24h":1.591175482E10}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"solana","symbol":"sol","name":"Solana","priceUsd":88.76,"marketCapUsd":5.1228122637E10,"volume24h":4.713549161E9}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"tron","symbol":"trx","name":"TRON","priceUsd":0.347,"marketCapUsd":3.2887594314E10,"volume24h":5.4779959E8}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"figure-heloc","symbol":"figr_heloc","name":"Figure Heloc","priceUsd":1.02,"marketCapUsd":1.7793435126E10,"volume24h":3.0362126E7}
+{"ts":"2026-05-07T00:29:32.045440500Z","ss":"crypto-feeder","id":"dogecoin","symbol":"doge","name":"Dogecoin","priceUsd":0.112056,"marketCapUsd":1.7275415756E10,"volume24h":2.213490559E9}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"bitcoin","symbol":"btc","name":"Bitcoin","priceUsd":81053.0,"marketCapUsd":1.623390267112E12,"volume24h":4.2197265055E10}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"ethereum","symbol":"eth","name":"Ethereum","priceUsd":2333.37,"marketCapUsd":2.81715857543E11,"volume24h":2.1034589589E10}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"tether","symbol":"usdt","name":"Tether","priceUsd":0.999856,"marketCapUsd":1.89623405879E11,"volume24h":7.7890469273E10}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"ripple","symbol":"xrp","name":"XRP","priceUsd":1.42,"marketCapUsd":8.7591118215E10,"volume24h":2.65136E9}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"binancecoin","symbol":"bnb","name":"BNB","priceUsd":645.27,"marketCapUsd":8.6988230658E10,"volume24h":1.872596363E9}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"usd-coin","symbol":"usdc","name":"USDC","priceUsd":0.999753,"marketCapUsd":7.8246181416E10,"volume24h":1.5929292917E10}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"solana","symbol":"sol","name":"Solana","priceUsd":88.39,"marketCapUsd":5.1010287601E10,"volume24h":4.741775732E9}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"tron","symbol":"trx","name":"TRON","priceUsd":0.34688,"marketCapUsd":3.2878424184E10,"volume24h":5.41079519E8}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"figure-heloc","symbol":"figr_heloc","name":"Figure Heloc","priceUsd":1.02,"marketCapUsd":1.7793435126E10,"volume24h":3.0362126E7}
+{"ts":"2026-05-07T00:59:32.016517300Z","ss":"crypto-feeder","id":"dogecoin","symbol":"doge","name":"Dogecoin","priceUsd":0.11141,"marketCapUsd":1.7179892519E10,"volume24h":2.229221137E9}
