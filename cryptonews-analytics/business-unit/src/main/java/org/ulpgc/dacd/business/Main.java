@@ -9,12 +9,23 @@ import org.ulpgc.dacd.business.subscriber.ActiveMqSubscriber;
 public class Main {
 
     public static void main(String[] args) {
-        SqliteDatamart datamart = new SqliteDatamart("datamart.db");
+        Config config = new Config();
+
+        SqliteDatamart datamart = new SqliteDatamart(config.get("datamart.path"));
 
         BusinessController controller = new BusinessController(
-                new EventStoreReader("eventstore", datamart),
-                new ActiveMqSubscriber("tcp://localhost:61616", "business-unit", datamart),
-                new RestApi(datamart)
+                new EventStoreReader(config.get("eventstore.path"), datamart),
+                new ActiveMqSubscriber(
+                        config.get("broker.url"),
+                        config.get("broker.client.id"),
+                        config.getArray("broker.topics"),
+                        datamart
+                ),
+                new RestApi(
+                        datamart,
+                        config.getInt("api.port"),
+                        config.getDouble("alert.threshold.percent")
+                )
         );
         controller.start();
     }

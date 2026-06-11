@@ -9,11 +9,14 @@ import org.ulpgc.dacd.crypto.store.SqliteCryptoStore;
 public class Main {
 
     public static void main(String[] args) {
+        Config config = new Config();
+
         CryptoController controller = new CryptoController(
-                new CoinGeckoFeeder(),
+                new CoinGeckoFeeder(config.get("coingecko.url")),
                 new CryptoSerializer(),
-                new SqliteCryptoStore("crypto.db"),
-                new ActiveMqPublisher("tcp://localhost:61616", "CryptoPrice")
+                new SqliteCryptoStore(config.get("database.path")),
+                new ActiveMqPublisher(config.get("broker.url"), config.get("broker.topic")),
+                config.getInt("capture.interval.minutes")
         );
         controller.start();
     }

@@ -9,11 +9,14 @@ import org.ulpgc.dacd.news.store.SqliteNewsStore;
 public class Main {
 
     public static void main(String[] args) {
+        Config config = new Config();
+
         NewsController controller = new NewsController(
-                new NewsApiFeeder(),
+                new NewsApiFeeder(config.get("newsapi.url"), config.get("newsapi.key")),
                 new NewsSerializer(),
-                new SqliteNewsStore("news.db"),
-                new ActiveMqPublisher("tcp://localhost:61616", "TechNews")
+                new SqliteNewsStore(config.get("database.path")),
+                new ActiveMqPublisher(config.get("broker.url"), config.get("broker.topic")),
+                config.getInt("capture.interval.minutes")
         );
         controller.start();
     }

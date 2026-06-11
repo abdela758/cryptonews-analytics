@@ -11,4 +11,5 @@ public interface Datamart {
     List<JsonObject> getCryptoHistory(String coinId);
     List<JsonObject> getLatestNews();
     List<JsonObject> getNewsAndPriceAt(String coinId);
+    List<JsonObject> getPriceAlerts(double thresholdPercent);
 }

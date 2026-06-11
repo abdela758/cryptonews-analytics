@@ -1,6 +1,5 @@
 package org.ulpgc.dacd.crypto.controller;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.ulpgc.dacd.crypto.feeder.Feeder;
 import org.ulpgc.dacd.crypto.model.CryptoRecord;
@@ -19,19 +18,21 @@ public class CryptoController {
     private final Serializer serializer;
     private final DataStore store;
     private final Publisher publisher;
-    private final Gson gson = new Gson();
+    private final int intervalMinutes;
 
-    public CryptoController(Feeder feeder, Serializer serializer, DataStore store, Publisher publisher) {
+    public CryptoController(Feeder feeder, Serializer serializer, DataStore store,
+                            Publisher publisher, int intervalMinutes) {
         this.feeder = feeder;
         this.serializer = serializer;
         this.store = store;
         this.publisher = publisher;
+        this.intervalMinutes = intervalMinutes;
     }
 
     public void start() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(this::execute, 0, 30, TimeUnit.MINUTES);
-        System.out.println("CryptoFeeder started. Capturing every 30 minutes...");
+        scheduler.scheduleAtFixedRate(this::execute, 0, intervalMinutes, TimeUnit.MINUTES);
+        System.out.println("CryptoFeeder started. Capturing every " + intervalMinutes + " minutes...");
     }
 
     private void execute() {

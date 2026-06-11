@@ -11,11 +11,13 @@ public class ActiveMqSubscriber implements Subscriber {
 
     private final String brokerUrl;
     private final String clientId;
+    private final String[] topics;
     private final Datamart datamart;
 
-    public ActiveMqSubscriber(String brokerUrl, String clientId, Datamart datamart) {
+    public ActiveMqSubscriber(String brokerUrl, String clientId, String[] topics, Datamart datamart) {
         this.brokerUrl = brokerUrl;
         this.clientId = clientId;
+        this.topics = topics;
         this.datamart = datamart;
     }
 
@@ -29,8 +31,9 @@ public class ActiveMqSubscriber implements Subscriber {
 
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-            subscribeTo(session, "CryptoPrice");
-            subscribeTo(session, "TechNews");
+            for (String topicName : topics) {
+                subscribeTo(session, topicName);
+            }
 
         } catch (JMSException e) {
             throw new RuntimeException("Failed to start business subscriber", e);

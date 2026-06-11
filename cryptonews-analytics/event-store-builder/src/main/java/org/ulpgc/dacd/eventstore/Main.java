@@ -7,16 +7,14 @@ import org.ulpgc.dacd.eventstore.subscriber.ActiveMqSubscriber;
 public class Main {
 
     public static void main(String[] args) {
-        String brokerUrl = "tcp://localhost:61616";
-        String[] topics = {"CryptoPrice", "TechNews"};
-        String clientId = "event-store-builder";
+        Config config = new Config();
 
         EventStoreController controller = new EventStoreController(
                 new ActiveMqSubscriber(
-                        brokerUrl,
-                        topics,
-                        clientId,
-                        new FileEventStore("eventstore")
+                        config.get("broker.url"),
+                        config.getArray("broker.topics"),
+                        config.get("broker.client.id"),
+                        new FileEventStore(config.get("eventstore.path"))
                 )
         );
         controller.start();

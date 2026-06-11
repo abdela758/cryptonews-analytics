@@ -189,4 +189,91 @@ public class SqliteDatamart implements Datamart {
         }
         return results;
     }
+
+    @Override
+    public List<JsonObject> getPriceAlerts(double thresholdPercent) {
+        List<JsonObject> alerts = new ArrayList<>();
+
+        // 1. Obtener la lista de criptos distintas que tenemos en el histórico
+        String coinsSql = "SELECT DISTINCT coin_id FROM crypto_history";
+        List<String> coinIds = new ArrayList<>();
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(coinsSql)) {
+            while (rs.next()) {
+                coinIds.add(rs.getString("coin_id"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to get coin list: " + e.getMessage());
+            return alerts;
+        }
+
+        // 2. Para cada cripto, recorrer su histórico buscando variaciones bruscas
+        for (String coinId : coinIds) {
+            String historySql = "SELECT price_usd, captured_at FROM crypto_history WHERE coin_id = ? ORDER BY captured_at ASC";
+            try (Connection conn = connect();
+                 PreparedStatement pstmt = conn.prepareStatement(historySql)) {
+                pstmt.setString(1, coinId);
+                ResultSet rs = pstmt.executeQuery();
+
+                double previousPrice = -1;
+                String previousTime = null;
+
+                while (rs.next()) {
+                    double currentPrice = rs.getDouble("price_usd");
+                    String currentTime = rs.getString("captured_at");
+
+                    if (previousPrice > 0) {
+                        double changePercent = ((currentPrice - previousPrice) / previousPrice) * 100;
+
+                        if (Math.abs(changePercent) >= thresholdPercent) {
+                            JsonObject alert = new JsonObject();
+                            alert.addProperty("coin_id", coinId);
+                            alert.addProperty("previous_price", previousPrice);
+                            alert.addProperty("current_price", currentPrice);
+                            alert.addProperty("change_percent", Math.round(changePercent * 100.0) / 100.0);
+                            alert.addProperty("direction", changePercent > 0 ? "UP" : "DOWN");
+                            alert.addProperty("detected_at", currentTime);
+
+                            // 3. Buscar las 3 noticias más cercanas en tiempo a este movimiento
+                            alert.add("related_news", getClosestNews(currentTime));
+
+                            alerts.add(alert);
+                        }
+                    }
+                    previousPrice = currentPrice;
+                    previousTime = currentTime;
+                }
+            } catch (SQLException e) {
+                System.err.println("Failed to analyze " + coinId + ": " + e.getMessage());
+            }
+        }
+        return alerts;
+    }
+
+    private com.google.gson.JsonArray getClosestNews(String referenceTime) {
+        com.google.gson.JsonArray newsArray = new com.google.gson.JsonArray();
+        String sql = """
+            
+                SELECT title, source, published_at, captured_at
+            FROM news
+            ORDER BY ABS(strftime('%s', captured_at) - strftime('%s', ?)) ASC
+            LIMIT 3
+            """;
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, referenceTime);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                JsonObject news = new JsonObject();
+                news.addProperty("title", rs.getString("title"));
+                news.addProperty("source", rs.getString("source"));
+                news.addProperty("published_at", rs.getString("published_at"));
+                newsArray.add(news);
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to get closest news: " + e.getMessage());
+        }
+        return newsArray;
+    }
 }

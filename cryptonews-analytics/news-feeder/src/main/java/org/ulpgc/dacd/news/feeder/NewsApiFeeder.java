@@ -8,15 +8,16 @@ import java.io.IOException;
 
 public class NewsApiFeeder implements Feeder {
 
-    private static final String API_KEY = "81e338badb1f4776b66bf69b245f0407";
-    private static final String URL =
-            "https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=10&apiKey=" + API_KEY;
-
+    private final String url;
     private final OkHttpClient client = new OkHttpClient();
+
+    public NewsApiFeeder(String baseUrl, String apiKey) {
+        this.url = baseUrl + apiKey;
+    }
 
     @Override
     public String fetch() {
-        Request request = new Request.Builder().url(URL).build();
+        Request request = new Request.Builder().url(url).build();
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
                 return response.body().string();

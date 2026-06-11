@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cryptonews-analytics.iml" filepath="$PROJECT_DIR$/.idea/cryptonews-analytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DACD.iml" filepath="$PROJECT_DIR$/.idea/DACD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cryptonews-analytics/business-unit/business-unit.iml" filepath="$PROJECT_DIR$/cryptonews-analytics/business-unit/business-unit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cryptonews-analytics/crypto-feeder/crypto-feeder.iml" filepath="$PROJECT_DIR$/cryptonews-analytics/crypto-feeder/crypto-feeder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cryptonews-analytics/event-store-builder/event-store-builder.iml" filepath="$PROJECT_DIR$/cryptonews-analytics/event-store-builder/event-store-builder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cryptonews-analytics/news-feeder/news-feeder.iml" filepath="$PROJECT_DIR$/cryptonews-analytics/news-feeder/news-feeder.iml" />
     </modules>
   </component>
 </project>
